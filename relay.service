@@ -1,0 +1,26 @@
+[Unit]
+Description=Relay local reverse proxy and management API
+After=network.target
+
+[Service]
+User=relay
+Group=relay
+ExecStart=/opt/proxy-panel/relay
+Restart=on-failure
+RestartSec=3
+Environment=CONFIG_PATH=/var/lib/proxy-panel/config.json
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/proxy-panel
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
